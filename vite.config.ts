@@ -8,22 +8,19 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
+      includeAssets: ['favicon.ico', 'icon.svg'],
       manifest: {
         name: '20 Strong Helper',
         short_name: '20Strong',
         description: 'Dice probability calculator for 20 Strong',
         theme_color: '#1a1a1a',
+        background_color: '#1a1a1a',
+        display: 'standalone',
         icons: [
           {
-            src: 'pwa-192x192.png',
-            sizes: '192x192',
-            type: 'image/png'
-          },
-          {
-            src: 'pwa-512x512.png',
-            sizes: '512x512',
-            type: 'image/png'
+            src: 'icon.svg',
+            sizes: '192x192 512x512',
+            type: 'image/svg+xml'
           }
         ]
       }

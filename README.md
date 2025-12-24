@@ -1,73 +1,37 @@
-# React + TypeScript + Vite
+# 20 Strong helper
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## How to Run
+ 1. Install Dependencies:
+```shell
+npm install
+```
+ 
+2. Start Development Server:
+```shell
+npm run dev
+```
+Open the URL shown (usually http://localhost:5173).
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+3. Build for Production (PWA):
+```shell
+npm run build
+npm run preview
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Prompt
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+In the 20 strong board game, there are dice with various numbers of successes:
+- Yellow - 1 critical hit, 1 hit, 4 misses
+- Green - 1 crit, 2 hits, 3 misses
+- Blue - 1 crit, 3 hits, 2 misses
+- Purple - 1 crit, 4 hits, 1 miss
+- Red - 1 crit, 5 hits, 0 misses
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1 crit (critical hit) deals 2 damage, and 1 hit deals 1 damage. A miss deals no damage.
+
+Generate a single-page PWA with the following functions:
+A user adds dice he has one by one selecting the color of each die. All colors are visible at the same time (i.e. represented as 5 stylized buttons). It's possible to add multiple dice of the same color. 
+1. The application calculates the mean of the total expected damage of the selected dice
+2. Additionally, a user enters the health of the monster, and the application calculates the probability with which the chosen dice will kill the monster (i.e. deal at least as much damage as the monster's health).
+
+It's possible to reset the selected dice.
