@@ -53,7 +53,11 @@ function App() {
   const [monsterHealth, setMonsterHealth] = useState<number | ''>('');
 
   const addDie = (color: DieColor) => {
-    setSelectedDice(prev => [...prev, color]);
+    setSelectedDice(prev => {
+      const next = [...prev, color];
+      const order = (Object.keys(DICE_STATS) as DieColor[]);
+      return next.sort((a, b) => order.indexOf(a) - order.indexOf(b));
+    });
   };
 
   const removeDie = (index: number) => {
