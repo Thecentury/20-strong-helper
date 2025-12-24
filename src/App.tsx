@@ -197,7 +197,7 @@ function App() {
         {/* Results */}
         <div className="bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-700 space-y-4">
           <div className="flex justify-between items-end border-b border-gray-700 pb-4">
-            <span className="text-gray-400">Expected Damage</span>
+            <span className="text-gray-400">Mean Damage</span>
             <span className="text-3xl font-bold text-white">
               {stats.mean.toFixed(2)}
             </span>
