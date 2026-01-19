@@ -46,7 +46,11 @@ const ProbabilityChart: React.FC<ProbabilityChartProps> = ({
           {/* Bars */}
           <div className="w-full h-full flex justify-around items-end">
             {chartData.map(({ damage, prob }) => (
-              <div key={damage} className="flex-1 flex flex-col items-center">
+              <div
+                key={damage}
+                className="flex-1 flex flex-col items-center justify-end text-center"
+                style={{ height: "100%" }}
+              >
                 <div
                   className="w-4/5 bg-blue-500 rounded-t-sm"
                   style={{ height: `${prob * 100}%` }}
