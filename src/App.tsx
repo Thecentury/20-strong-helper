@@ -111,6 +111,17 @@ function App() {
     return { mean, killProbability, dp, maxDamage };
   }, [selectedDice, monsterHealth]);
 
+  const cdp = useMemo(() => {
+    const { dp, maxDamage } = stats;
+    const cdp: { [damage: number]: number } = {};
+    let cumulative = 1.0;
+    for (let d = 0; d <= maxDamage + 1; d++) {
+      cdp[d] = cumulative;
+      cumulative -= dp[d] || 0;
+    }
+    return cdp;
+  }, [stats]);
+
   return (
     <div className="min-h-screen bg-gray-900 text-gray-100 p-4 font-sans flex flex-col items-center">
       <header className="mb-6 text-center">
@@ -237,7 +248,7 @@ function App() {
         </div>
 
         {selectedDice.length > 0 && (
-          <ProbabilityChart dp={stats.dp} maxDamage={stats.maxDamage} />
+          <ProbabilityChart cdp={cdp} maxDamage={stats.maxDamage} />
         )}
       </main>
     </div>

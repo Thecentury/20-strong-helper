@@ -1,17 +1,17 @@
 import React from "react";
 
 interface ProbabilityChartProps {
-  dp: { [damage: number]: number };
+  cdp: { [damage: number]: number };
   maxDamage: number;
 }
 
 const ProbabilityChart: React.FC<ProbabilityChartProps> = ({
-  dp,
+  cdp,
   maxDamage,
 }) => {
   const chartData = Array.from({ length: maxDamage + 2 }, (_, i) => ({
     damage: i,
-    prob: dp[i] || 0,
+    prob: cdp[i] || 0,
   }));
 
   const yAxisLabels = [0, 20, 40, 60, 80, 100];
@@ -20,7 +20,7 @@ const ProbabilityChart: React.FC<ProbabilityChartProps> = ({
   return (
     <div className="bg-gray-800 p-4 md:p-6 rounded-xl shadow-lg border border-gray-700 mt-6">
       <h2 className="text-sm font-semibold text-gray-400 mb-4 uppercase tracking-wider">
-        Outcome Probabilities
+        Cumulative Outcome Probabilities
       </h2>
       <div className="flex space-x-2 h-64">
         {/* Y-Axis */}
@@ -50,7 +50,7 @@ const ProbabilityChart: React.FC<ProbabilityChartProps> = ({
                 <div
                   className="w-4/5 bg-blue-500 rounded-t-sm"
                   style={{ height: `${prob * 100}%` }}
-                  title={`Prob: ${(prob * 100).toFixed(1)}%`}
+                  title={`Prob (>=${damage}): ${(prob * 100).toFixed(1)}%`}
                 ></div>
                 <span className="text-xs text-gray-400 mt-1">{damage}</span>
               </div>
