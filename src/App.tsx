@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import ProbabilityChart from "./ProbabilityChart";
 
 type DieColor = "yellow" | "green" | "blue" | "purple" | "red";
 
@@ -105,7 +106,9 @@ function App() {
       }
     }
 
-    return { mean, killProbability, dp };
+    const maxDamage = selectedDice.length * 2;
+
+    return { mean, killProbability, dp, maxDamage };
   }, [selectedDice, monsterHealth]);
 
   return (
@@ -232,6 +235,10 @@ function App() {
             </p>
           )}
         </div>
+
+        {selectedDice.length > 0 && (
+          <ProbabilityChart dp={stats.dp} maxDamage={stats.maxDamage} />
+        )}
       </main>
     </div>
   );
