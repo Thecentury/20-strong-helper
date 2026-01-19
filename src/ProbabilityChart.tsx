@@ -22,27 +22,28 @@ const ProbabilityChart: React.FC<ProbabilityChartProps> = ({
       <h2 className="text-sm font-semibold text-gray-400 mb-4 uppercase tracking-wider">
         Outcome Probabilities
       </h2>
-      <div className="flex space-x-2 items-end h-64">
+      <div className="flex space-x-2 h-64">
         {/* Y-Axis */}
-        <div className="h-full flex flex-col justify-between text-xs text-gray-400 relative">
+        <div className="flex flex-col-reverse justify-between text-xs text-gray-400 relative pr-2">
           {yAxisLabels.map((val) => (
-            <span key={val} className="-mb-2">
+            <span key={val} style={{ transform: "translateY(50%)" }}>
               {val}%
             </span>
           ))}
-          <div className="absolute top-0 left-8 right-0 bottom-4 border-l border-gray-600">
-            {horizontalLines.map((val) => (
-              <div
-                key={val}
-                className="absolute w-full border-t border-dashed border-gray-600"
-                style={{ bottom: `${val}%` }}
-              ></div>
-            ))}
-          </div>
         </div>
 
-        {/* Bars */}
-        <div className="flex-grow h-full flex items-end border-b border-gray-600 relative">
+        {/* Chart Area */}
+        <div className="flex-grow h-full border-b border-l border-gray-600 relative">
+          {/* Horizontal Lines */}
+          {horizontalLines.map((val) => (
+            <div
+              key={val}
+              className="absolute w-full border-t border-dashed border-gray-600"
+              style={{ bottom: `${val}%` }}
+            ></div>
+          ))}
+
+          {/* Bars */}
           <div className="w-full h-full flex justify-around items-end">
             {chartData.map(({ damage, prob }) => (
               <div key={damage} className="flex-1 flex flex-col items-center">
