@@ -68,6 +68,19 @@ function App() {
     setSelectedDice([]);
   };
 
+  const incrementMonsterHealth = () => {
+    setMonsterHealth((prev) => (prev === "" ? 1 : prev + 1));
+  };
+
+  const decrementMonsterHealth = () => {
+    setMonsterHealth((prev) => {
+      if (prev === "" || prev <= 1) {
+        return "";
+      }
+      return prev - 1;
+    });
+  };
+
   const stats = useMemo(() => {
     // 1. Calculate Mean Expected Damage
     const mean = selectedDice.reduce(
@@ -180,18 +193,34 @@ function App() {
           <h2 className="text-sm font-semibold text-gray-400 mb-2 uppercase tracking-wider">
             Monster Health
           </h2>
-          <input
-            type="number"
-            min="1"
-            value={monsterHealth}
-            onChange={(e) =>
-              setMonsterHealth(
-                e.target.value === "" ? "" : parseInt(e.target.value),
-              )
-            }
-            className="w-full bg-gray-900 border border-gray-600 rounded-lg py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
-            placeholder="Enter HP..."
-          />
+          <div className="flex items-center gap-2">
+            <button
+              onClick={decrementMonsterHealth}
+              className="w-10 h-10 rounded-full shadow-md transition-transform transform active:scale-95 flex items-center justify-center font-bold text-lg bg-red-600 hover:bg-red-700 text-white"
+              aria-label="Decrement monster health"
+            >
+              -
+            </button>
+            <input
+              type="number"
+              min="1"
+              value={monsterHealth}
+              onChange={(e) =>
+                setMonsterHealth(
+                  e.target.value === "" ? "" : parseInt(e.target.value),
+                )
+              }
+              className="w-full bg-gray-900 border border-gray-600 rounded-lg py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg text-center"
+              placeholder="Enter HP..."
+            />
+            <button
+              onClick={incrementMonsterHealth}
+              className="w-10 h-10 rounded-full shadow-md transition-transform transform active:scale-95 flex items-center justify-center font-bold text-lg bg-green-500 hover:bg-green-600 text-white"
+              aria-label="Increment monster health"
+            >
+              +
+            </button>
+          </div>
         </div>
 
         {/* Results */}
