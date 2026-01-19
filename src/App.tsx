@@ -196,7 +196,7 @@ function App() {
           <div className="flex items-center gap-2">
             <button
               onClick={decrementMonsterHealth}
-              className="w-10 h-10 rounded-full shadow-md transition-transform transform active:scale-95 flex items-center justify-center font-bold text-lg bg-red-600 hover:bg-red-700 text-white"
+              className="w-10 h-10 rounded-full shadow-md transition-transform transform active:scale-95 flex items-center justify-center font-bold text-lg bg-red-600 hover:bg-red-700 text-white flex-shrink-0"
               aria-label="Decrement monster health"
             >
               -
@@ -215,7 +215,7 @@ function App() {
             />
             <button
               onClick={incrementMonsterHealth}
-              className="w-10 h-10 rounded-full shadow-md transition-transform transform active:scale-95 flex items-center justify-center font-bold text-lg bg-green-500 hover:bg-green-600 text-white"
+              className="w-10 h-10 rounded-full shadow-md transition-transform transform active:scale-95 flex items-center justify-center font-bold text-lg bg-green-500 hover:bg-green-600 text-white flex-shrink-0"
               aria-label="Increment monster health"
             >
               +
